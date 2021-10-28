@@ -1,0 +1,237 @@
+﻿@model ShootingRangeManagementApp.Models.ViewModels.StoreViewModel
+
+<div class="wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    </div>
+
+
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">hedehüdew</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard v1</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>150</h3>
+
+                            <p>New Orders</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                            <p>Bounce Rate</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>44</h3>
+
+                            <p>User Registrations</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>65</h3>
+
+                            <p>Unique Visitors</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Task</th>
+                                <th>Progress</th>
+                                <th style="width: 40px">Label</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td>Daily Giro</td>
+                                <td>
+                                    @Model.DailyStoreGiro.TotalAmountDaily
+                                </td>
+                                <td><span class="badge bg-danger">30%</span></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>Total Bills Count</td>
+                                <td>
+                                    <div class="progress progress-xs">
+                                        <div class="progress-bar bg-warning" style="width: 70%"></div>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-warning">70%</span></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>Show Store Partner</td>
+                                <td>
+                                    <div class="progress progress-xs progress-striped active">
+                                        <div class="progress-bar bg-primary" style="width: 30%"></div>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-primary">30%</span></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>Monthly Giro</td>
+                                <td>
+                                    <div class="progress progress-xs progress-striped active">
+                                        <div class="progress-bar bg-success" style="width: 90%"></div>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-success">90%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- right col --><div class="card-body">
+    <ul class="pagination pagination-month justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">«</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">Jan</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item active">
+            <a class="page-link" href="#">
+                <p class="page-month">Feb</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">Mar</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">Apr</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">May</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">Jun</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">Jul</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">Aug</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">Sep</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">Oct</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">Nov</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">
+                <p class="page-month">Dec</p>
+                <p class="page-year">2021</p>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">»</a></li>
+    </ul>
+</div>
+            </div>
+            <!-- /.row (main row) -->
+        </div>
+        <!-- /.container-fluid -->
+
+    </section>
+    <!-- /.content -->
+    <!-- /.content-wrapper -->
+</div>

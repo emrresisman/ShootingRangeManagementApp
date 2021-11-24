@@ -28,7 +28,12 @@ namespace ShootingRangeManagementApp.Core.DailyGiro
 
         public void EditDailyGiro(DailyStoreGiro dailyStoreGiro)
         {
-            throw new NotImplementedException();
+            Update(dailyStoreGiro);
+        }
+
+        public IEnumerable<DailyStoreGiro> FindStoreDailyGiros(int id)
+        {
+            return Find(x => x.StoreId == id).ToList();
         }
 
         public DailyStoreGiro GetDailyGiro(int id)
@@ -40,5 +45,7 @@ namespace ShootingRangeManagementApp.Core.DailyGiro
         {
             return GetAll();
         }
+
+      
     }
 }

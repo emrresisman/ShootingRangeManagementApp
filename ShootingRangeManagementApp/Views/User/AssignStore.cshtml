@@ -1,0 +1,56 @@
+﻿@model SelectList
+
+<form method="post" asp-controller="User" asp-action="AssignStore">
+    <input asp-for="@User" type="hidden" name="UserId" value="@ViewData["Id"]" />
+    <select id="ddlStores" name="StoreId" asp-items="Model">
+        <option value="0">--Select Store--</option>
+    </select>
+    <input type="hidden" name="StoreName" />
+    <br />
+    <br />
+    <input type="submit" value="Submit" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js%22%3E</script>
+    <script type="text/javascript">
+        $("body").on("change", "#ddlStores", function () {
+            $("input[name=StoreName]").val($(this).find("option:selected").text());
+        });
+    </script>
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert("@ViewBag.Message");
+            });
+        </script>
+    }
+</form>
+@*<form action="AssignRole" method="post" class="p-4 w-75 mx-auto shadow">
+    <input type="hidden" asp-for="@Model.UserId" />
+    
+    <div class="form-group">
+        @for (int i = 0; i < Model.Store.Count; i++)
+        {
+            <input type="hidden" asp-for="@Model.Store[i].StoreName" />
+            <input type="hidden" asp-for="@Model.Store[i].StoreId" />
+            <label class="list-group-item">
+                <input class="form-check-input me-1" asp-for="@Model.Store[i].Exist" />
+                @Model.Store[i].StoreName
+            </label>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="Radio" asp-for="@Model.Store[i].StoreId" value="@Model.Store[i].StoreId">
+                <label class="form-check-label" asp-for="@Model.Store[i].Exist">
+                    @Model.Store[i].StoreName
+                </label>
+            </div>
+           
+}
+
+
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Save </button>
+    </div>
+    <div class="text-danger mt-2" asp-validation-summary="ModelOnly"></div>
+
+</form>*@

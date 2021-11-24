@@ -13,7 +13,7 @@ namespace ShootingRangeManagementApp.EFCore.Configurations
     {
         public void Configure(EntityTypeBuilder<AppRole> builder)
         {
-            builder.Property(x => x.Definition).HasMaxLength(300).IsRequired();
+            //builder.Property(x => x.Definition).HasMaxLength(300).IsRequired();
         }
     }
 }

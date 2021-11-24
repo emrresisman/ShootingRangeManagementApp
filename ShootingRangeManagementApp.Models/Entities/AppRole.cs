@@ -1,4 +1,5 @@
-﻿using ShootingRangeManagementApp.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using ShootingRangeManagementApp.Models;
 using ShootingRangeManagementApp.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,20 @@ using System.Threading.Tasks;
 
 namespace ShootingRangeManagementApp.Models.Entities
 {
-    public class AppRole: BaseEntity
+    public class AppRole: IdentityRole<int>
     {
-        public string Definition { get; set; }
-        
-        public List<AppUser> AppUsers { get; set; }
+       
+        //public AppRole():base()
+        //{
+
+        //}
+        //public AppRole(string name):base(name)
+        //{
+
+        //}
+
+        //public string Definition { get; set; }
+
+
     }
 }

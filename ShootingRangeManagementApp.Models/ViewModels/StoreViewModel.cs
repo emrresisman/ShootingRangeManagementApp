@@ -9,12 +9,16 @@ namespace ShootingRangeManagementApp.Models.ViewModels
 {
     public class StoreViewModel
     {
+     
         public int Id { get; set; }
         public Store Store { get; set; }
-        public DailyStoreGiro DailyStoreGiro { get; set; }
-        public MonthlyStoreGiro MonthlyStoreGiro { get; set; }
-        public StoreStocks StoreStock { get; set; }
-        public StorePartner StorePartner { get; set; }
-        public Bills Bills { get; set; }
+        public List<DailyStoreGiro> DailyStoreGiros { get; set; }
+        public StoreStocks StoreStocks { get; set; }
+        public List<Bills> Bills { get; set; }
+        
+
+        //public StoreStocks StoreStock { get; set; }
+
+
     }
 }

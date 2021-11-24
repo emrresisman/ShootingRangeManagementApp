@@ -14,7 +14,7 @@ namespace ShootingRangeManagementApp.EFCore.Configurations
         public void Configure(EntityTypeBuilder<Bills> builder)
         {
             builder.Property(x => x.BillCost).HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Image).HasMaxLength(300).IsRequired();
+          
             builder.Property(x => x.Name).HasMaxLength(300).IsRequired();
             builder.Property(x => x.Explanation).HasMaxLength(300).IsRequired();
         }

@@ -12,9 +12,12 @@ namespace ShootingRangeManagementApp.Models.Entities
         [ForeignKey("Store")]
         public int StoreId { get; set; }
         public virtual Store Store { get; set; }
+        public DateTime Date { get; set; }
         public string Name { get; set; }
         public string Explanation { get; set; }
-        public int BillCost { get; set; }
-        public string Image { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal BillCost { get; set; }
+        
     }
 }

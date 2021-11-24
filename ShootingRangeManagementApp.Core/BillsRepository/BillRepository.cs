@@ -27,7 +27,12 @@ namespace ShootingRangeManagementApp.Core.BillsRepository
 
         public void EditBill(Bills bills)
         {
-            throw new NotImplementedException();
+             Update(bills);
+        }
+
+        public IEnumerable<Bills> FindStoreBills(int id)
+        {
+            return Find(x=>x.StoreId==id).ToList();
         }
 
         public Bills GetBill(int id)

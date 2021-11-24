@@ -5,6 +5,7 @@ using ShootingRangeManagementApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,10 +31,21 @@ namespace ShootingRangeManagementApp.Core.Repositories
             _dbSet.AddRange(entities);
         }
 
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _dbSet.Where(predicate);
+        }
+
         public IEnumerable<TEntity> GetAll()
         {
             return _dbSet.ToList();
         }
+        // IQueryable yaz
+        //public IEnumerable<TEntity> GetAll()
+        //{
+        //    return _dbSet.ToList();
+        //}
+
 
         public TEntity GetById(int id)
         {

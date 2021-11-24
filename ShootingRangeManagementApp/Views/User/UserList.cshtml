@@ -1,0 +1,52 @@
+﻿@model List<AppUser>
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<a asp-action="CreateUser" asp-controller="User" class="btn btn-outline-success mt-4 ml-4">Add New User</a>
+<br /><br />
+<label class="text-danger ml-4 ">If you add user from this panel, user password is equal to username that you enter.</label>
+<table class="mt-4 table table-hover table-bordered table-sm">
+    <thead>
+        <tr class="text-center">
+            <td>Username</td>
+            <td>Email</td>
+            <td>Store</td>
+            <td>Assign Role</td>
+            <td>Assign Store</td>
+            <td class="text-center">User Process</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr class="text-center">
+
+
+            <td>@item.UserName</td>
+            <td>@item.Email</td>
+            <td>@item.StoreId</td>
+            <td><a asp-action="AssignRole" asp-controller="User" asp-route-id="@item.Id" class="btn btn-outline-success">Assign Role</a></td>
+            <td><a asp-action="AssignStoretoLocaleAdmin" asp-controller="User" asp-route-id="@item.Id" class="btn btn-outline-success">Assign Role to locale Admin</a></td>
+
+
+            <td><a asp-action="AssignStore" asp-controller="User" asp-route-id="@item.Id" class="btn btn-outline-success">Assign Store</a></td>
+
+
+            <td>
+                <div class="text-center">
+
+                    <a asp-action="Delete" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-outline-danger">
+
+
+                        <img width="25" height="25" src="~/images/delete.png" />  Delete User
+                    </a>
+                    <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-outline-info">
+
+                        <img width="25" height="25" src="~/images/edit.png" />   Edit User
+                    </a>
+                </div>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

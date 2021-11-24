@@ -19,6 +19,107 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
             modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.AppRole", b =>
                 {
                     b.Property<int>("Id")
@@ -26,54 +127,114 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Definition")
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppRole");
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.AppUser", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.AppUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AppRoleId")
+                    b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StoreId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppRoleId");
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
 
-                    b.ToTable("Users");
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("StoreId");
+
+                    b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.Bills", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.Bills", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BillCost")
-                        .HasColumnType("int");
+                    b.Property<decimal>("BillCost")
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Explanation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -89,23 +250,26 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.ToTable("Bills");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.DailyStoreGiro", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.DailyStoreGiro", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<decimal>("Cash")
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<decimal>("CreditCart")
+                        .HasColumnType("decimal(18,4)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StoreId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalAmountDaily")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -115,7 +279,7 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.ToTable("DailyStoreGiros");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.MonthlyStoreGiro", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.MonthlyStoreGiro", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -138,7 +302,7 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.ToTable("MonthlyStoreGiros");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.Store", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.Store", b =>
                 {
                     b.Property<int>("StoreId")
                         .ValueGeneratedOnAdd()
@@ -160,7 +324,7 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.ToTable("Stores");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.StorePartner", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.StorePartner", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -170,14 +334,14 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaymentRate")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PaymentRate")
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("StoreId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalAmount")
-                        .HasColumnType("int");
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("Id");
 
@@ -186,7 +350,7 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.ToTable("StorePartners");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.StoreStocks", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.StoreStocks", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -213,18 +377,69 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.ToTable("StoreStocks");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.AppUser", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("ShootingRangeManagementApp.Models.Entities.AppRole", "AppRole")
-                        .WithMany("AppUsers")
-                        .HasForeignKey("AppRoleId");
-
-                    b.Navigation("AppRole");
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.AppRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.Bills", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("StoreManagementSystem.Models.Entities.Store", "Store")
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.AppRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.AppUser", b =>
+                {
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.Store", "Store")
+                        .WithMany("AppUsers")
+                        .HasForeignKey("StoreId");
+
+                    b.Navigation("Store");
+                });
+
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.Bills", b =>
+                {
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.Store", "Store")
                         .WithMany("Bills")
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -233,9 +448,9 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.Navigation("Store");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.DailyStoreGiro", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.DailyStoreGiro", b =>
                 {
-                    b.HasOne("StoreManagementSystem.Models.Entities.Store", "Store")
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.Store", "Store")
                         .WithMany("DailyStoreGiro")
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -244,9 +459,9 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.Navigation("Store");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.MonthlyStoreGiro", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.MonthlyStoreGiro", b =>
                 {
-                    b.HasOne("StoreManagementSystem.Models.Entities.Store", "Store")
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.Store", "Store")
                         .WithMany("MonthlyStoreGiro")
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -255,9 +470,9 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.Navigation("Store");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.StorePartner", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.StorePartner", b =>
                 {
-                    b.HasOne("StoreManagementSystem.Models.Entities.Store", "Store")
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.Store", "Store")
                         .WithMany("StorePartners")
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -266,24 +481,21 @@ namespace ShootingRangeManagementApp.EFCore.Migrations
                     b.Navigation("Store");
                 });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.StoreStocks", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.StoreStocks", b =>
                 {
-                    b.HasOne("StoreManagementSystem.Models.Entities.Store", "Store")
+                    b.HasOne("ShootingRangeManagementApp.Models.Entities.Store", "Store")
                         .WithOne("StoreStocks")
-                        .HasForeignKey("StoreManagementSystem.Models.Entities.StoreStocks", "StoreId")
+                        .HasForeignKey("ShootingRangeManagementApp.Models.Entities.StoreStocks", "StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Store");
                 });
 
-            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.AppRole", b =>
+            modelBuilder.Entity("ShootingRangeManagementApp.Models.Entities.Store", b =>
                 {
                     b.Navigation("AppUsers");
-                });
 
-            modelBuilder.Entity("StoreManagementSystem.Models.Entities.Store", b =>
-                {
                     b.Navigation("Bills");
 
                     b.Navigation("DailyStoreGiro");

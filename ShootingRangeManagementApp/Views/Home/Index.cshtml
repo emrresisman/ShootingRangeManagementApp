@@ -1,15 +1,20 @@
 ﻿@model List<Store>
 @{ Layout = "~/Views/Shared/_Layout.cshtml"; }
 
-<a asp-action="Create" asp-controller="Home" class="btn btn-outline-success mt-4">Add New User</a>
+<a asp-action="Create" asp-controller="Home" class="btn btn-outline-success mt-4 ml-4">Add New Store</a>
+<a asp-action="UserList" asp-controller="User" class="btn btn-outline-success mt-4 ml-4">User List</a>
+<a asp-action="Create" asp-controller="Role" class="btn btn-outline-success mt-4 ml-4">Add New Role</a>
+<a asp-action="Index" asp-controller="Role" class="btn btn-outline-success mt-4 ml-4">Role List</a>
 <table class="mt-4 table table-hover table-bordered table-sm">
     <thead>
         <tr class="text-center">
-            <td>Adı</td>
+            <td>Store Name</td>
             <td>Balance</td>
-            <td>Adres</td>
+            <td>Address</td>
 
-            <td class="text-center">User Process</td>
+            <td class="text-center">Store Detail</td>
+            <td class="text-center">Delete Action</td>
+            <td class="text-center">Edit Action</td>
         </tr>
     </thead>
     <tbody>
@@ -24,22 +29,28 @@
 
 
             <td>
-                <div class="text-center">
+                
                     <a asp-action="Index" asp-controller="Store" asp-route-id="@item.StoreId" class="btn btn-outline-dark">
-                        Store Details
+                        <i class="fas fa-hdd mr-2"></i>     Manage Store
                     </a>
-                        <a asp-action="Delete" asp-controller="Home" asp-route-id="@item.StoreId" class="btn btn-outline-danger">
+                    </td>
+        
+            <td>
+                <a asp-action="Delete" asp-controller="Home" asp-route-id="@item.StoreId" onclick="return confirm('Are you sure to delete store :@item.StoreName')" class="btn btn-outline-danger">
 
 
-                            <img width="25" height="25" src="~/images/delete.png" />  Delete User
-                        </a>
-                        <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.StoreId" class="btn btn-outline-info">
-
-                            <img width="25" height="25" src="~/images/edit.png" />   Edit User
-                        </a>
-                </div>
-
+                    <i class="fas fa-ban mr-2"></i>     Delete Store 
+                </a>
             </td>
+            <td>
+                <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.StoreId" class="btn btn-outline-info">
+
+                    <i class="fas fa-highlighter mr-2"></i>     Edit Store
+                </a>
+
+                
+                            </td>
+          
         </tr>}
     </tbody>
 </table>

@@ -13,9 +13,9 @@ namespace ShootingRangeManagementApp.EFCore.Configurations
     {
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
-            builder.Property(x => x.Username).HasMaxLength(300).IsRequired();
-            builder.Property(x => x.FullName).HasMaxLength(300).IsRequired();
-            builder.Property(x => x.Password).HasMaxLength(50).IsRequired();
+            //builder.Property(x => x.Username).HasMaxLength(300).IsRequired();
+            //builder.Property(x => x.FullName).HasMaxLength(300).IsRequired();
+            //builder.Property(x => x.Password).HasMaxLength(50).IsRequired();
 
         }
     }

@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShootingRangeManagementApp.Dtos\ShootingRangeManagementApp.Dtos.csproj" />
     <ProjectReference Include="..\ShootingRangeManagementApp.EFCore\ShootingRangeManagementApp.EFCore.csproj" />
     <ProjectReference Include="..\ShootingRangeManagementApp.Models\ShootingRangeManagementApp.Models.csproj" />
   </ItemGroup>

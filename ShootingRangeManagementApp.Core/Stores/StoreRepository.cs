@@ -29,7 +29,7 @@ namespace ShootingRangeManagementApp.Core.Stores
 
         public void EditStore(Store store)
         {
-            throw new NotImplementedException();
+            Update(store);
         }
 
         public Store GetStore(int id)
@@ -40,6 +40,10 @@ namespace ShootingRangeManagementApp.Core.Stores
         public IEnumerable<Store> GetStores()
         {
             return GetAll();
+        }
+        public IEnumerable<Store> GetStoresWithFilter(int id)
+        {
+            return Find(x => x.StoreId == id).ToList();
         }
     }
 }

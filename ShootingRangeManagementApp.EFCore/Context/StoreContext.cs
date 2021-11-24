@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ShootingRangeManagementApp.Models;
 using ShootingRangeManagementApp.Models.Entities;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ShootingRangeManagementApp.EFCore.Context
 {
-    public class StoreContext:DbContext
+    public class StoreContext:IdentityDbContext<AppUser,AppRole,int>
     {
         public DbSet<Bills> Bills { get; set; }
         public DbSet<DailyStoreGiro> DailyStoreGiros { get; set; }
@@ -17,7 +18,7 @@ namespace ShootingRangeManagementApp.EFCore.Context
         public DbSet<Store> Stores { get; set; }
         public DbSet<StorePartner> StorePartners { get; set; }
         public DbSet<StoreStocks> StoreStocks { get; set; }
-        public DbSet<AppUser> Users { get; set; }
+        
         
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
@@ -33,6 +34,25 @@ namespace ShootingRangeManagementApp.EFCore.Context
 
             //modelBuilder.ApplyConfiguration(new ()); konfigürasyonları ekle
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<DailyStoreGiro>()
+            .HasOne(p => p.Store)
+            .WithMany(b => b.DailyStoreGiro).HasForeignKey(x=>x.StoreId);
+
+            modelBuilder.Entity<MonthlyStoreGiro>()
+            .HasOne(p => p.Store)
+            .WithMany(b => b.MonthlyStoreGiro);
+
+            modelBuilder.Entity<Bills>()
+            .HasOne(p => p.Store)
+            .WithMany(b => b.Bills);
+
+            modelBuilder.Entity<StorePartner>()
+            .HasOne(p => p.Store)
+            .WithMany(b => b.StorePartners);
+
+            modelBuilder.Entity<AppUser>()
+           .HasOne(p => p.Store)
+           .WithMany(b => b.AppUsers);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace ShootingRangeManagementApp.Core.DailyGiro
     public interface IDailyGiroRepository
     {
         IEnumerable<DailyStoreGiro> GetDailyGiros();
+        IEnumerable<DailyStoreGiro> FindStoreDailyGiros(int id);
         public void Create(DailyStoreGiro dailyStoreGiro);
         public void Delete(int id);
         public void EditDailyGiro(DailyStoreGiro dailyStoreGiro);

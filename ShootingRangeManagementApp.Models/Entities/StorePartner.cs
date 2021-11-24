@@ -12,7 +12,11 @@ namespace ShootingRangeManagementApp.Models.Entities {
         public int StoreId { get; set; }
         public virtual Store Store { get; set; }
         public string Name { get; set; }
-        public int PaymentRate { get; set; }
-        public int TotalAmount { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal PaymentRate { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal TotalAmount { get; set; }
     }
 }

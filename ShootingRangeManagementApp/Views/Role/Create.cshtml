@@ -1,0 +1,18 @@
+﻿@model RoleCreateDto
+
+
+
+<form action="Create" method="post" class="p-4 w-75 mx-auto shadow">
+
+    <div class="mb-3">
+        <label> Role Name:</label>
+        <input asp-for="@Model.Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="@Model.Name"></span>
+    </div>
+   
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Add Role </button>
+    </div>
+    <div class="text-danger mt-2" asp-validation-summary="ModelOnly"></div>
+
+</form>

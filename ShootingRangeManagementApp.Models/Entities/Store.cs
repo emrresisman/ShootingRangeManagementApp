@@ -19,6 +19,7 @@ namespace ShootingRangeManagementApp.Models.Entities {
         public virtual List<StorePartner> StorePartners { get; set; }
         public virtual StoreStocks StoreStocks { get; set; }
         public virtual List<Bills> Bills { get; set; }
+        public virtual List<AppUser> AppUsers { get; set; }
 
     }
 }

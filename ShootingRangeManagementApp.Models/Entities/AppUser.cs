@@ -1,20 +1,27 @@
-﻿using ShootingRangeManagementApp.Models.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using ShootingRangeManagementApp.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ShootingRangeManagementApp.Models.Entities
 {
-    public class AppUser: BaseEntity
+    public class AppUser: IdentityUser<int>
     {
-        public string FullName { get; set; }
-        public string Username { get; set; }
-     
-        public string Password { get; set; }
-       
-        public AppRole AppRole { get; set; }
+
+        [ForeignKey("Store")]
+        //public int? StoreId { get; set; }
+        public int? StoreId { get; set; }
+        public virtual Store Store { get; set; }
+        //public string FullName { get; set; }
+        //public string Username { get; set; }
+
+        //public string Password { get; set; }
+
+
 
     }
 }

@@ -16,6 +16,7 @@ namespace ShootingRangeManagementApp.EFCore.Configurations
             builder.Property(x => x.Address).HasMaxLength(300).IsRequired();
             builder.Property(x => x.Balance).HasMaxLength(300).IsRequired();
             builder.Property(x => x.StoreName).HasMaxLength(300).IsRequired();
+
         }
     }
 }

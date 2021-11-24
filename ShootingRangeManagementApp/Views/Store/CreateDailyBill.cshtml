@@ -1,0 +1,41 @@
+﻿
+@model Bills
+
+<h1>Add</h1>
+
+<h4>Daily Store Giro</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form action="/Store/CreateDailyBill" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="StoreId" type="hidden" value="@ViewData["Id"]" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Explanation" class="control-label"></label>
+                <input asp-for="Explanation" class="form-control" />
+                <span asp-validation-for="Explanation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BillCost" class="control-label"></label>
+                <input asp-for="BillCost" class="form-control" />
+                <span asp-validation-for="BillCost" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="CreateDailyBill" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

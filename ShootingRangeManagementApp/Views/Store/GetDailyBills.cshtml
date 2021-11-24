@@ -1,0 +1,114 @@
+﻿@model List<Bills>
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="row">
+    <!-- Left col -->
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>DateTime</th>
+                    <th>Name</th>
+                    <th>Explanation</th>
+                    <th>Bill Cost</th>
+                    <th style="width: 40px">Image</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+<tbody>
+    <tr>
+        <td>1.</td>
+        <td>@item.Date</td>
+        <td>
+            @item.Name
+        </td>
+        <td>@item.Explanation</td>
+        <td>@item.BillCost</td>
+        
+    </tr>
+
+</tbody>}
+
+        </table>
+    </div>
+    <!-- right col --><div class="card-body">
+        <ul class="pagination pagination-month justify-content-center">
+            <li class="page-item"><a class="page-link" href="#">«</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Jan</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link" href="#">
+                    <p class="page-month">Feb</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Mar</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Apr</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">May</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Jun</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Jul</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Aug</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Sep</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Oct</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Nov</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Dec</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">»</a></li>
+        </ul>
+    </div>
+</div>

@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace ShootingRangeManagementApp.Core.Interfaces
 {
@@ -11,6 +13,7 @@ namespace ShootingRangeManagementApp.Core.Interfaces
     {
         TEntity GetById(int id);
         IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         void Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
         void Remove(int id);

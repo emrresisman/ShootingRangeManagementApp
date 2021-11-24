@@ -10,6 +10,7 @@ namespace ShootingRangeManagementApp.Core.BillsRepository
     public interface IBillRepository
     {
         IEnumerable<Bills> GetDailyBills();
+        IEnumerable<Bills> FindStoreBills(int id);
         public void Create(Bills bills);
         public void Delete(int id);
         public void EditBill(Bills bills);

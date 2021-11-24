@@ -1,0 +1,190 @@
+﻿@model MonthlyGiroViewModel
+    <section class="content">
+        <div class="container-fluid">
+            @*<h3 class="text-md-center">This is calculating monthly giro page.</h3>*@
+            <h4 class="text-md-center">
+                <i class="fas fa-globe mt-4 "></i> @Model.Store.StoreName
+
+            </h4>
+            <br />
+            <div class="row">
+                <div class="col-lg-3 col-6 ml-5">
+                    <!-- small card -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>@Model.totalIncome</h3>
+
+                            <p>Total Income this month:</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6 ml-5">
+                    <!-- small card -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>@Model.totalExpense</h3>
+
+                            <p>Total Expense</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6 ml-5">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@Model.Total</h3>
+
+                            <p>Total</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @*<form action="CalculateMonthlyGiro" method="post">
+            <div class="container-lg">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group date" id="reservationdate1" data-target-input="nearest1">
+                                <input asp-for="SDate" type="text" class="form-control datetimepicker-input app-date" value="@DateTime.Today.ToString("yyyy-MM-dd")" data-target="#reservationdate1">
+
+
+                            </div>
+                        </div>
+
+                        <label>/</label>
+
+                        <div class="col-sm-4">
+                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                <input asp-for="EDate" type="text" class="form-control datetimepicker-input app-date" value="@DateTime.Today.ToString("yyyy-MM-dd")" data-target="#reservationdate">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 mt-4 mb-4">
+                            <a type="submit" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
+                                Calculate with filter
+                            </a>
+                        </div>
+                    </div>
+
+        </form>*@
+
+            <div class="row">
+                <form action="CalculateMonthlyGiro" method="post">
+                    <div class="form-group">
+                        <input asp-for="StoreId" type="hidden" value="@ViewData["Id"]" />
+                        <div class="col-lg-3 col-6 offset-4">
+                            Start Date:<input type="date" class="form-control" name="startDate" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-lg-3 col-6 offset-4">
+                            End Date:<input type="date" class="form-control" name="endDate" />
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6 offset-4">
+                        <input type="submit" value="Submit" class="btn btn-outline-secondary" /><br />
+                        <br />
+                        <a class="text-muted" asp-page="/CalculateMonthlyGiro">Calculate with filter</a>
+                    </div>
+                </form>
+
+            </div>
+            <br />
+
+
+
+
+            <table class="mt-4 table table-hover table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <td>Store Partners</td>
+                        <td>Payment Rate</td>
+                        <td>Total Amount</td>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var storePartner in Model.StorePartners)
+                    {
+
+        <tr>
+            <td>
+
+                @storePartner.Name
+
+            </td>
+            <td>@storePartner.PaymentRate</td>
+            <td>
+                @storePartner.TotalAmount
+
+            </td>
+        </tr>
+}
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+           </section>
+            <!--<table class="mt-4 table table-hover table-bordered table-sm">
+            <thead>
+                <tr class="text-center">
+                    <td>Store Name</td>
+                    <td>Total Income</td>
+                    <td>Total Expense</td>
+                    <td>Store Partners</td>
+                    <td>Total</td>
+
+
+
+                </tr>
+            </thead>
+            <tbody>-->
+            @*@foreach (var item in Model.StorePartners)
+                {*@
+            <!--<tr class="text-center">
+                        <td>@Model.Store.StoreName</td>
+                        <td>@Model.totalIncome</td>
+                        <td>@Model.totalExpense</td>
+                        <td>@Model.Total</td>
+                        @foreach (var storePartner in Model.StorePartners)
+                        {
+            <td>
+                @storePartner.Name
+
+            </td>
+                            <td>
+                                @storePartner.TotalAmount
+
+                            </td>}
+
+                    </tr>
+
+                </tbody>
+            </table>-->

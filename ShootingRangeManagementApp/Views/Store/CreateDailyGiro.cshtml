@@ -1,0 +1,45 @@
+﻿
+@*@model CreateDailyGiroDto
+
+@{ ViewData["Title"] = "Create";
+    }
+
+<h1>Add</h1>
+
+<h4>Daily Store Giro</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateDailyGiro" enctype="multipart/form-data">
+            <input asp-for="StoreId" type="hidden" value="@ViewData["Id"]" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cash" class="control-label"></label>
+                <input asp-for="Cash" class="form-control" />
+                <span asp-validation-for="Cash" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreditCart" class="control-label"></label>
+                <input asp-for="CreditCart" class="form-control" />
+                <span asp-validation-for="CreditCart" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" accept="image/*" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="CreateDailyGiro" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>*@
+
+
+

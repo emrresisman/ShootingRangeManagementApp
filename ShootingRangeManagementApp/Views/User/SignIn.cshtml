@@ -1,0 +1,134 @@
+﻿@model UserLoginDto
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Log in</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="~/index2.html"><b>Admin</b>LTE</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card shadow-lg">
+            <p class="placeholder-glow">
+                <span class="placeholder col-12"></span>
+            </p>
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <form action="SignIn" method="post">
+                    <div class="input-group mb-3">
+                        <input asp-for="@Model.Username" placeholder="Username" class="form-control" />
+                        <span class="text-danger" asp-validation-for="@Model.Username"></span>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div><br />
+
+                    <div class="input-group mb-3">
+                        <input type="password" asp-for="@Model.Password" placeholder="Password" class="form-control" />
+                        <span class="text-danger" asp-validation-for="@Model.Password"></span>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.RememberMe">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Remember Me
+                            </label>
+                        </div>
+                        @*<div class="col-8">
+                        <div class="icheck-primary form-check">
+                            <input type="checkbox" asp-for="@Model.RememberMe">
+                            <label for="remember">
+                                Remember Me
+                            </label>
+                        </div>
+                    </div>*@
+                        <!-- /.col -->
+                        <!-- /.col -->
+                    </div>
+                    <div class="social-auth-links text-center mb-3">
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </div>
+                </form>
+
+
+                <!-- /.social-auth-links -->
+                @*<p class="mb-1">
+                <a href="forgot-password.html">I forgot my password</a>
+            </p>
+            <p class="mb-0">
+                <a href="register.html" class="text-center">Register a new membership</a>
+            </p>*@
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/adminlte.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+@*<form action="SignIn" method="post" class="p-4 w-75 mx-auto shadow">
+
+        <div class="mb-3">
+            <label> User Name:</label>
+            <input asp-for="@Model.Username" class="form-control" />
+            <span class="text-danger" asp-validation-for="@Model.Username"></span>
+        </div>
+        <div class="mb-3">
+            <label> Password:</label>
+            <input type="password" asp-for="@Model.Password" class="form-control" />
+            <span class="text-danger" asp-validation-for="@Model.Password"></span>
+
+        </div>
+        <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" asp-for="@Model.RememberMe">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Remember Me
+            </label>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Login </button>
+        </div>
+        <div class="text-danger mt-2" asp-validation-summary="ModelOnly"></div>
+
+        <label> Dont you have an account? Sign Up.</label>
+    </form>*@

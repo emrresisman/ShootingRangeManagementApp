@@ -1,0 +1,59 @@
+﻿@model List<AppUser>
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<a asp-action="CreateUser" asp-controller="User" class="btn btn-outline-success mt-4 ml-4">Add New User</a>
+<br />
+<br />
+
+<table class="mt-4 table table-hover table-bordered table-sm">
+    <thead>
+        <tr class="text-center">
+            <td>Username</td>
+            <td>Email</td>
+            
+            <td>Assign Role</td>
+            <td>Assign Multiple Store</td>
+            
+            <td class="text-center">User Process</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr class="text-center">
+
+
+    <td>@item.UserName</td>
+    <td>@item.Email</td>
+    
+    <td><a asp-action="AssignRole" asp-controller="User" asp-route-id="@item.Id" class="btn btn-outline-dark"><i class="fas fa-clipboard-check"></i>   Assign Role</a></td>
+
+    <td><a asp-action="AssignStoretoLocaleAdmin" asp-controller="User" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fas fa-list-ol"></i>   Assign Multiple Store</a></td>
+    
+
+
+
+
+
+
+
+
+
+    <td>
+        
+
+            <a asp-action="DeleteUser" asp-controller="User" asp-route-id="@item.Id" onclick="return confirm('Are you sure to delete user :@item.UserName')" class="btn btn-outline-danger">
+
+
+                <i class="fas fa-user-minus"></i>  Delete User
+            </a>
+            <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-outline-info">
+
+                <i class="fas fa-user-check"></i>   Edit User
+            </a>
+       
+
+    </td>
+</tr>}
+    </tbody>
+</table>

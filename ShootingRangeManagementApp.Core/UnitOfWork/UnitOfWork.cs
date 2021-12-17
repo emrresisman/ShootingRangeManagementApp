@@ -4,6 +4,7 @@ using ShootingRangeManagementApp.Core.Interfaces;
 using ShootingRangeManagementApp.Core.StocksRepository;
 using ShootingRangeManagementApp.Core.StorePartners;
 using ShootingRangeManagementApp.Core.Stores;
+using ShootingRangeManagementApp.Core.UsersRepository;
 using ShootingRangeManagementApp.EFCore.Context;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,14 @@ namespace ShootingRangeManagementApp.Core.UnitOfWork
     public class UnitOfWork:IUnitOfWork
     {
         private StoreContext _storeContext;
-        public UnitOfWork(StoreContext storeContext, IStoreRepository storeRepository,IDailyGiroRepository dailyGiroRepository,IStockRepository stockRepository,IBillRepository billRepository,IStorePartnerRepository storePartnerRepository)
+        public UnitOfWork(StoreContext storeContext, IStoreRepository storeRepository,IDailyGiroRepository dailyGiroRepository,IStockRepository stockRepository,IBillRepository billRepository,IStorePartnerRepository storePartnerRepository,IUserRepository userRepository)
         {
             StockRepository = stockRepository;
             StoreRepository = storeRepository;
             DailyGiroRepository = dailyGiroRepository;
             BillRepository = billRepository;
             StorePartnerRepository = storePartnerRepository;
+            UserRepository = userRepository;
             _storeContext = storeContext;
         }
         public IStorePartnerRepository StorePartnerRepository { get; private set; }
@@ -30,6 +32,7 @@ namespace ShootingRangeManagementApp.Core.UnitOfWork
         public IStockRepository StockRepository { get; private set; }
         public IStoreRepository StoreRepository { get; private set; }
         public IDailyGiroRepository DailyGiroRepository { get; private set; }
+        public IUserRepository UserRepository { get; private set; }
 
         public int Complete()
         {

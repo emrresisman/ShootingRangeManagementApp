@@ -21,7 +21,9 @@ namespace ShootingRangeManagementApp.Models.Entities
 
         //public string Password { get; set; }
 
-
+        
+        public virtual List<AppUserStore> AppUserStores { get; set; }
+       
 
     }
 }

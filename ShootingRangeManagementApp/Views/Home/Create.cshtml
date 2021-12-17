@@ -1,42 +1,86 @@
 ﻿@model Store
 @{ Layout = "~/Views/Shared/_Layout.cshtml"; }
-@using (Html.BeginForm())
-{
+@*@using (Html.BeginForm())
+    {
 
-@Html.ValidationSummary(true)
+    @Html.ValidationSummary(true)
 
-<form class="form-group">
-    
-       
+                    <form class="form-group">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.StoreName)
+                            <div class=" form-control">
+                                @Html.EditorFor(model => model.StoreName)
 
+                                @Html.ValidationMessageFor(model => model.StoreName)
+                            </div>
+                        </div>
 
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Address)
+                            <div class="form-control">
+                                @Html.EditorFor(model => model.Address)
 
-    <div class="form-group row">
-        @Html.LabelFor(model => model.StoreName)
-        <div class=" form-control">
-            @Html.EditorFor(model => model.StoreName)
+                                @Html.ValidationMessageFor(model => model.Address)
+                            </div>
+                        </div>
+                        <p>
+                            <div class="btn btn-outline-info">
+                                <input type="submit" value="Create" />
+                            </div>
+                        </p>
+                    </form>}
 
-            @Html.ValidationMessageFor(model => model.StoreName)
-        </div>
+    <div>
+
+        @Html.ActionLink("Back to List", "Index")
+
+    </div>*@
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+
+            <div class="col-sm-6">
+                <h1 class="m-0">Entry Page</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a class="text-black-50">Home</a></li>
+                    <li class="breadcrumb-item active">Entry Page</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Add New Store</h3>
     </div>
+    <!-- /.card-header -->
+    <!-- form start -->
 
-    <div class="form-group row">
-        @Html.LabelFor(model => model.Address)
-        <div class="form-control">
-            @Html.EditorFor(model => model.Address)
+    <div class="card-body">
+        <form method="post" asp-controller="Home" asp-action="Create">
+           
 
-            @Html.ValidationMessageFor(model => model.Address)
-        </div>
+            <div class="form-group">
+                <label asp-for="StoreName" class="control-label"></label>
+                <input asp-for="StoreName" class="form-control" />
+                <span asp-validation-for="StoreName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" value="Create" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     </div>
-    <p>
-        <div class="btn btn-outline-info">
-            <input type="submit" value="Create" />
-        </div>
-    </p>
-</form>}
+    <!-- /.card-body -->
 
-<div>
 
-    @Html.ActionLink("Back to List", "Index")
 
 </div>

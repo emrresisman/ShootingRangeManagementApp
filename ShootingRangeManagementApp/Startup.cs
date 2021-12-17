@@ -24,6 +24,7 @@ using Microsoft.AspNet.Identity;
 using Owin;
 using AutoMapper;
 using ShootingRangeManagementApp.Core.Mapping;
+using ShootingRangeManagementApp.Core.UsersRepository;
 
 namespace ShootingRangeManagementApp
 {
@@ -45,6 +46,7 @@ namespace ShootingRangeManagementApp
             services.AddScoped<IDailyGiroRepository, DailyGiroRepository>();
             services.AddScoped<IBillRepository, BillRepository>();
             services.AddScoped<IStorePartnerRepository, StorePartnerRepository>();
+            services.AddScoped<IUserRepository, UserRepository >() ;
             services.AddScoped<UnitOfWork>();
             services.AddIdentity<AppUser, AppRole>(opt=> {
                 opt.Password.RequireDigit = false;

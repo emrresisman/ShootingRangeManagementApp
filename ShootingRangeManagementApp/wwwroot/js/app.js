@@ -37,7 +37,7 @@
                 { "data": "image", "name": "Image", "autoWidth": true },
 
                 {
-                    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Store/EditDailyStoreGiro/' + $(this).data('id') + '">Edit</a>'; }
+                    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Store/EditDailyStoreGiro/' + full[0] + '">Edit</a>'; }
                 },
                 {
                     data: null,

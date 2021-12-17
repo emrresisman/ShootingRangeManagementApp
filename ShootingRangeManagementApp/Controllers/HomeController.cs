@@ -9,11 +9,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace ShootingRangeManagementApp.Controllers
 {
-    
+    [Authorize]
     public class HomeController : Controller
     {
         // USER REMEMBER ME SEÇİLİYKEN SİTEYİ AÇTIĞINDA HOME INDEXE GİRMEYE ÇALIŞIYOR ÇÖZÜM BUL.
@@ -29,13 +30,31 @@ namespace ShootingRangeManagementApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            var StoreRepository = _unitOfWork.StoreRepository;
             var currentUser = await _manager.GetUserAsync(User);
-            var Id = currentUser.StoreId;
-            if (!User.IsInRole("Admin"))
+            var UserWithStores = _manager.Users.Where(z => z.Id == currentUser.Id).Include(o => o.AppUserStores).ToList();
+            if (User.IsInRole("Member"))
             {
+                var Id = currentUser.StoreId;
                 return RedirectToAction("Index", "Store", new { @id = Id });
             }
-            var StoreRepository = _unitOfWork.StoreRepository;
+            else if (User.IsInRole("LocaleAdmin"))
+            {
+                var storeRepository = _unitOfWork.StoreRepository;
+
+                var userStores= UserWithStores.SelectMany(o => o.AppUserStores).ToList();
+                var idList=userStores.Select(o => o.StoreId).ToList();
+                //var idList=currentUser.AppUserStores.Select(o => o.StoreId).ToList();
+                var localstores=storeRepository.GetStoresWithFilterMultiple(idList).ToList();
+                return View(localstores);
+            }
+            else if (User.IsInRole("Admin"))
+            {
+                
+                return View(StoreRepository.GetStores());
+            }
+            
+          
             return View(StoreRepository.GetStores());
         }
         public IActionResult Create()
@@ -46,8 +65,9 @@ namespace ShootingRangeManagementApp.Controllers
         [HttpPost]
         public IActionResult Create(Store store)
         {
-            var UserRepository = _unitOfWork.StoreRepository;
-            UserRepository.Create(store);
+            var StoreRepository = _unitOfWork.StoreRepository;
+            StoreRepository.Create(store);
+            
             _unitOfWork.Complete();
             return RedirectToAction("Index"); 
         }

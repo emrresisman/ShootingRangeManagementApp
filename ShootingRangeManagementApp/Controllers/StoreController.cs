@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ShootingRangeManagementApp.Core.DailyGiro;
 using ShootingRangeManagementApp.Core.UnitOfWork;
 using ShootingRangeManagementApp.Dtos.DailyStoreGiroDtos;
@@ -42,15 +43,6 @@ namespace ShootingRangeManagementApp.Web.Controllers
             //System.Security.Claims.ClaimsPrincipal currentUser = this.User;
             
 
-            var currentUser = await _manager.GetUserAsync(User);
-            var Id = currentUser.StoreId;
-            if (!User.IsInRole("Admin"))
-            {
-                if (id != Id)
-                {
-                    throw new ArgumentException("Access denied.You can't access this store.");
-                }
-            }
 
             var StoreRepository = _unitOfWork.StoreRepository;
             var DailyGiroRepository = _unitOfWork.DailyGiroRepository;
@@ -66,9 +58,41 @@ namespace ShootingRangeManagementApp.Web.Controllers
             };
 
             //var storeDetail = StoreRepository.GetStore(Id);
+            var currentStore=StoreRepository.GetStore(id);
+            
+           
+
+            var currentUser = await _manager.GetUserAsync(User);
+            var UserWithStores = _manager.Users.Where(z => z.Id == currentUser.Id).Include(o => o.AppUserStores).ToList();
+            var storesAdmin = UserWithStores.Select(o => o.AppUserStores);
+            var Id = currentUser.StoreId;
+            if (User.IsInRole("Member")&&!User.IsInRole("Admin"))
+            {
+                if (id != Id)
+                {
+                    throw new ArgumentException("Access denied.You can't access this store.");
+                }
+            }
+            else if (User.IsInRole("LocaleAdmin"))
+            {
+
+                var userStores = UserWithStores.SelectMany(o => o.AppUserStores).ToList();
+                var idList = userStores.Select(o => o.StoreId).ToList();
+
+                foreach (var UserId in idList)
+                {
+                    if (id == UserId)
+                    {
+                        return View(storeViewModel);
+                    }
+                    else if (id != UserId)
+                    {
+                        throw new ArgumentException("Access denied.You can't access this store");
+                    }
+                }
+            }
             ViewData["Id"] = id;
             return View(storeViewModel);
-
         }
         //public IActionResult GetDailyGiros(int id)
         //{

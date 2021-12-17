@@ -45,5 +45,10 @@ namespace ShootingRangeManagementApp.Core.Stores
         {
             return Find(x => x.StoreId == id).ToList();
         }
+        public IEnumerable<Store> GetStoresWithFilterMultiple(List<int> ids)
+        {
+
+            return Find(o => ids.Any(f => f == o.StoreId));
+        }
     }
 }

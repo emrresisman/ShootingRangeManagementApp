@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ShootingRangeManagementApp.EFCore.Context
 {
-    public class StoreContext:IdentityDbContext<AppUser,AppRole,int>
+    public class StoreContext : IdentityDbContext<AppUser, AppRole, int>
     {
         public DbSet<Bills> Bills { get; set; }
         public DbSet<DailyStoreGiro> DailyStoreGiros { get; set; }
@@ -18,8 +18,9 @@ namespace ShootingRangeManagementApp.EFCore.Context
         public DbSet<Store> Stores { get; set; }
         public DbSet<StorePartner> StorePartners { get; set; }
         public DbSet<StoreStocks> StoreStocks { get; set; }
-        
-        
+
+
+
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
 
@@ -36,7 +37,7 @@ namespace ShootingRangeManagementApp.EFCore.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<DailyStoreGiro>()
             .HasOne(p => p.Store)
-            .WithMany(b => b.DailyStoreGiro).HasForeignKey(x=>x.StoreId);
+            .WithMany(b => b.DailyStoreGiro).HasForeignKey(x => x.StoreId);
 
             modelBuilder.Entity<MonthlyStoreGiro>()
             .HasOne(p => p.Store)
@@ -51,8 +52,20 @@ namespace ShootingRangeManagementApp.EFCore.Context
             .WithMany(b => b.StorePartners);
 
             modelBuilder.Entity<AppUser>()
-           .HasOne(p => p.Store)
+           .HasOne(p => p.Store)            //kontrol et
            .WithMany(b => b.AppUsers);
+
+
+            modelBuilder.Entity<StoreStocks>()
+                 .Property(b => b.BrokenGunCount)
+                 .HasDefaultValue(0);
+            modelBuilder.Entity<StoreStocks>()
+                 .Property(b => b.BulletBoxCount)
+                 .HasDefaultValue(0);
+            modelBuilder.Entity<StoreStocks>()
+                .Property(b => b.WorkingGunCount)
+                .HasDefaultValue(0);
+            // modelBuilder.Entity<AppUserStore>().HasKey(nameof(AppUserStore.AppUserId), nameof(AppUserStore.StoreId));
         }
     }
 }

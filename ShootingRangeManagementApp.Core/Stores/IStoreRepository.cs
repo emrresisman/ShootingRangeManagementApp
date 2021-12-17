@@ -16,5 +16,6 @@ namespace ShootingRangeManagementApp.Core.Interfaces
         public void EditStore(Store store);
         public Store GetStore(int id);
         public IEnumerable<Store> GetStoresWithFilter(int id);
+        public IEnumerable<Store> GetStoresWithFilterMultiple(List<int> ids);
     }
 }

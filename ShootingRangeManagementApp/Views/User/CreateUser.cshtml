@@ -1,9 +1,15 @@
 ﻿@model UserAdminCreateDto
-
+    <div class="col-md-12">
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-ban"></i> Warning!</h5>
+            If you add user from this panel, user password is equal to username that you enter.
+        </div>
+    </div>
 
 
 <form action="CreateUser" method="post" class="p-4 w-75 mx-auto shadow">
-
+    
     <div class="mb-3">
         <label> User Name:</label>
         <input asp-for="@Model.Username" class="form-control" />

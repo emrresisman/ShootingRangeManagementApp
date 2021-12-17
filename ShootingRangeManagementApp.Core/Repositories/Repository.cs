@@ -25,7 +25,7 @@ namespace ShootingRangeManagementApp.Core.Repositories
         {
             _dbSet.Add(entity);
         }
-
+        
         public void AddRange(IEnumerable<TEntity> entities)
         {
             _dbSet.AddRange(entities);

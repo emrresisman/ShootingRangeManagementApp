@@ -4,7 +4,7 @@
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+        <img class="animation__shake" src="~/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
     </div>
    
 
@@ -14,12 +14,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">@Model.Store.StoreName</h1>
+                    <h1 class="m-0 ">@Model.Store.StoreName</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v1</li>
+                        <li class="breadcrumb-item text-gray"><a>Home</a></li>
+                        <li class="breadcrumb-item active">@Model.Store.StoreName</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -95,78 +95,94 @@
             <!-- /.row -->
             <!-- Main row -->
             <div class="row">
-                <a asp-action="Index" asp-controller="AppUserPage" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
-                   Add Daily Giro
-                </a>
+               
                 <!-- Left col -->
-
+                
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Progress</th>
-                                <th style="width: 40px">Label</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Daily Giro</td>
-                                <td>
-                                    <a asp-action="Index" asp-controller="AppUserPage" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
-                                        Add Daily Giro
-                                    </a>
-                                    <a asp-action="DailyStoreGiroDataTables" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
-                                        See Daily Giros
-                                    </a>
-                                </td>
-                                <td><span class="badge bg-danger">30%</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Total Bills Count</td>
-                                <td>
-                                    <a asp-action="CreateDailyBill" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
-                                        Add Daily Bill
-                                    </a>
-                                    <a asp-action="DailyBillsDataTable" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
-                                        See Daily Bills
-                                    </a>
-                                </td>
-                                <td><span class="badge bg-warning">70%</span></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Show Store Partner</td>
-                                <td>
-                                    <a asp-action="AddStorePartner" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
-                                        Add Store Partner
-                                    </a>
-                                    <a asp-action="GetStorePartners" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
-                                        See Store Partners
-                                    </a>
-                                </td>
-                                <td><span class="badge bg-primary">30%</span></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Monthly Giro</td>
-                                <td>
-                                    <a asp-action="CalculateMonthlyGiro" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
-                                        Add Store Partner
-                                    </a>
-                                </td>
-                                @*<td>
-                                    <a asp-action="CalculateMonthlyGiroWDates" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
-                                       Calculate With Date
-                                    </a>
-                                </td>*@
-                                <td><span class="badge bg-success">90%</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="shadow-lg p-3 mb-5 rounded">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th style="width: 30%">Task</th>
+                                    <th style="width: 68%">Progress</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-weight-bold font">1.</td>
+                                    <td class="font-weight-bold font">Daily Giro</td>
+                                    <td>
+                                        <div class="col-md-12">
+                                            <div class="btn-group mb-2 mb-md-0 btn-block">
+                                                <a asp-action="Index" asp-controller="AppUserPage" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark btn-lg">
+                                                    <i class="fas fa-plus mr-3"></i>Add Daily Giro
+                                                </a>
+                                                <a asp-action="DailyStoreGiroDataTables" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark btn-lg">
+                                                    <i class="far fa-eye mr-3"></i>See Daily Giros
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold font">2.</td>
+                                    <td class="font-weight-bold font">Total Bills Count</td>
+                                    <td>
+                                        <div class="col-md-12">
+                                            <div class="btn-group mb-2 mb-md-0 btn-block">
+                                                <a asp-action="CreateDailyBill" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark btn-lg ">
+                                                    <i class="fas fa-plus mr-3"></i>Add Daily Bill
+                                                </a>
+                                                <a asp-action="DailyBillsDataTable" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark btn-lg">
+                                                    <i class="far fa-eye mr-3"></i>See Daily Bills
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold font">3.</td>
+                                    <td class="font-weight-bold font">Show Store Partner</td>
+                                    <td>
+                                        <div class="col-md-12">
+                                            <div class="btn-group mb-2 mb-md-0 btn-block">
+                                                <a asp-action="AddStorePartner" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark btn-lg">
+                                                    <i class="fas fa-plus mr-3"></i>Add Store Partner
+                                                </a>
+
+
+                                                <a asp-action="GetStorePartners" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark btn-lg">
+                                                    <i class="far fa-eye mr-3"></i>See Store Partners
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bolder font">4.</td>
+                                    <td class="font-weight-bolder font">Monthly Giro</td>
+                                    <td>
+                                        <div class="col-md-12">
+                                            <a asp-action="CalculateMonthlyGiro" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark btn-lg btn-block">
+                                                <i class="fas fa-calculator mr-3"></i>  Calculate Monthly Giro
+                                            </a>
+                                        </div>
+                                    </td>
+                                    @*<td>
+                        <a asp-action="CalculateMonthlyGiroWDates" asp-controller="Store" asp-route-id="@Model.Store.StoreId" class="btn btn-outline-dark">
+                           Calculate With Date
+                        </a>
+                    </td>*@
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- right col --><div class="card-body">
                     <ul class="pagination pagination-month justify-content-center">

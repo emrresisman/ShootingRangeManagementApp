@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,10 @@ namespace ShootingRangeManagementApp.Models.Entities {
         public virtual StoreStocks StoreStocks { get; set; }
         public virtual List<Bills> Bills { get; set; }
         public virtual List<AppUser> AppUsers { get; set; }
+
+     
+        public virtual List<AppUser> AppUser { get; set; }
+        
 
     }
 }

@@ -1,13 +1,68 @@
 ﻿
 @model StorePartner
+@*<h1>Add</h1>
 
-<h1>Add</h1>
+    <h4>Daily Store Partner</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form action="/Store/AddStorePartner" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input asp-for="StoreId" type="hidden" value="@ViewData["Id"]" />
+                </div>
 
-<h4>Daily Store Partner</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form action="/Store/AddStorePartner" method="post">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PaymentRate" class="control-label"></label>
+                    <input asp-for="PaymentRate" class="form-control" />
+                    <span asp-validation-for="PaymentRate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TotalAmount" class="control-label"></label>
+                    <input asp-for="TotalAmount" class="form-control" />
+                    <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="AddStorePartner" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>*@
+
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+
+            <div class="col-sm-6">
+                <h1 class="m-0">Create Page</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Starter Page</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Add Store Partner</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+
+    <div class="card-body">
+        <form method="post" asp-controller="Store" asp-action="AddStorePartner">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input asp-for="StoreId" type="hidden" value="@ViewData["Id"]" />
@@ -23,19 +78,27 @@
                 <input asp-for="PaymentRate" class="form-control" />
                 <span asp-validation-for="PaymentRate" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="TotalAmount" class="control-label"></label>
                 <input asp-for="TotalAmount" class="form-control" />
                 <span asp-validation-for="TotalAmount" class="text-danger"></span>
             </div>
-
-
-            <div class="form-group">
-                <input type="submit" value="AddStorePartner" class="btn btn-primary" />
+            <div class="card-footer">
+                <button type="submit" value="Create" class="btn btn-primary">Create</button>
             </div>
         </form>
     </div>
+    <!-- /.card-body -->
+
+
+
 </div>
+
+
+
+
+
 
 
 

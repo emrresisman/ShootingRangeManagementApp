@@ -5,19 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShootingRangeManagementApp.Models.Entities
+namespace ShootingRangeManagementApp.Dtos.StorePartnerDtos
 {
-    public class Bills: BaseEntity
+    public class EditStorePartnerDto
     {
+        public int Id { get; set; }
         [ForeignKey("Store")]
         public int StoreId { get; set; }
-        public virtual Store Store { get; set; }
-        public DateTime Date { get; set; }= DateTime.UtcNow;
         public string Name { get; set; }
-        public string Explanation { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal BillCost { get; set; }
-        
+        public decimal PaymentRate { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal TotalAmount { get; set; }
     }
 }

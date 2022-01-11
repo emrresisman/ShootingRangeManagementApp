@@ -91,6 +91,7 @@ namespace ShootingRangeManagementApp.Web.Controllers
                     }
                 }
             }
+           
             ViewData["Id"] = id;
             return View(storeViewModel);
         }
@@ -145,7 +146,41 @@ namespace ShootingRangeManagementApp.Web.Controllers
         //    _unitOfWork.Complete();
         //    return RedirectToAction("Index");
         //}
-        
+
+        public IActionResult EditDailyBill(int id)
+        {
+
+            var billRepository = _unitOfWork.BillRepository;
+            var dailyBill = billRepository.GetBill(id);
+
+            return View(dailyBill);
+        }
+
+        [HttpPost]
+        public IActionResult EditDailyBill(EditDailyBillDto editDailyBillDto)
+        {
+            //var dailyGiroRepository = _unitOfWork.DailyGiroRepository;
+            //var dailyGiro = dailyGiroRepository.GetDailyGiro(dailyStoreGiroDto.Id);
+            //EditStoreDto editedStoreDto = new EditStoreDto();
+
+            //_mapper.Map(dailyStoreGiroDto, dailyGiro);
+            //storeRepository.EditStore(store);
+
+
+            if (ModelState.IsValid)
+            {
+                var billRepository = _unitOfWork.BillRepository;
+                var dailyBill = billRepository.GetBill(editDailyBillDto.StoreId);
+                _mapper.Map(editDailyBillDto, dailyBill);
+            }
+
+            //EditStoreDto editedStoreDto = new EditStoreDto();
+
+            //_mapper.Map(storeDto, store);
+            //storeRepository.EditStore(store);
+            _unitOfWork.Complete();
+            return RedirectToAction("DailyBillsDataTable", "Store", new { Id = editDailyBillDto.StoreId });
+        }
         public IActionResult EditDailyStoreGiro(int id)
         {
             var dailyGiroRepository = _unitOfWork.DailyGiroRepository;
@@ -157,14 +192,27 @@ namespace ShootingRangeManagementApp.Web.Controllers
         [HttpPost]
         public IActionResult EditDailyStoreGiro(EditDailyStoreGiroDto dailyStoreGiroDto)
         {
-            var dailyGiroRepository = _unitOfWork.DailyGiroRepository;
-            var dailyGiro = dailyGiroRepository.GetDailyGiro(dailyStoreGiroDto.Id);
+            //var dailyGiroRepository = _unitOfWork.DailyGiroRepository;
+            //var dailyGiro = dailyGiroRepository.GetDailyGiro(dailyStoreGiroDto.Id);
             //EditStoreDto editedStoreDto = new EditStoreDto();
 
-            _mapper.Map(dailyStoreGiroDto, dailyGiro);
+            //_mapper.Map(dailyStoreGiroDto, dailyGiro);
+            //storeRepository.EditStore(store);
+           
+
+            if (ModelState.IsValid)
+            {
+                var DailyGiroRepository = _unitOfWork.DailyGiroRepository;
+                var dailyGiro = DailyGiroRepository.GetDailyGiro(dailyStoreGiroDto.StoreId);
+                _mapper.Map(dailyStoreGiroDto, dailyGiro);
+            }
+
+            //EditStoreDto editedStoreDto = new EditStoreDto();
+
+            //_mapper.Map(storeDto, store);
             //storeRepository.EditStore(store);
             _unitOfWork.Complete();
-            return View("Index");
+            return RedirectToAction("DailyStoreGiroDataTables", "Store", new { Id = dailyStoreGiroDto.StoreId });
         }
       
         public IActionResult DeleteDailyStoreGiro(int id)
@@ -228,7 +276,26 @@ namespace ShootingRangeManagementApp.Web.Controllers
             _unitOfWork.Complete();  // Deleteden sonra routingde hata var düzelt !!!!
             return RedirectToAction("Index", "Store", new { Id = deletedPartner.StoreId });
         }
-        
+        public IActionResult EditStorePartner(int id)
+        {
+            var storePartnerRepository = _unitOfWork.StorePartnerRepository;
+            var storePartner=storePartnerRepository.GetStorePartner(id);
+            ViewData["Id"] = id;
+            return View(storePartner);
+        }
+        [HttpPost]
+        public IActionResult EditStorePartner(EditStorePartnerDto editStorePartnerDto)
+        {
+            var StorePartnerRepository = _unitOfWork.StorePartnerRepository;
+            var editedStorePartner = StorePartnerRepository.GetStorePartner(editStorePartnerDto.Id);
+            //EditStoreDto editedStoreDto = new EditStoreDto();
+             
+            _mapper.Map(editStorePartnerDto, editedStorePartner);
+            //storeRepository.EditStore(store);
+            _unitOfWork.Complete();
+            return RedirectToAction("GetStorePartners","Store", new { Id = editedStorePartner.StoreId });
+        }
+
         public IActionResult GetStorePartners(int id)
         {
             var storePartnersRepository = _unitOfWork.StorePartnerRepository;
@@ -280,10 +347,16 @@ namespace ShootingRangeManagementApp.Web.Controllers
             var dailyGiros = dailyGiroRepository.FindStoreDailyGiros(id);
             var q = from dailyGiro in dailyGiros where dailyGiro.Date >= startDate && dailyGiro.Date < endDate
                     select dailyGiro;
+             
             //dailyGiros = (from x in dailyGiros where (x.Date <= startDate) && (x.Date >= endDate) select x).ToList();
-           
+
             var dailyBillRepository = _unitOfWork.BillRepository;
             var dailyBills = dailyBillRepository.FindStoreBills(id);
+
+            var f = from dailyBill in dailyBills
+                    where dailyBill.Date >= startDate && dailyBill.Date < endDate
+                    select dailyBill;
+
             var storePartnerRepository = _unitOfWork.StorePartnerRepository;
             var storePartners = storePartnerRepository.FindStorePartners(id);
             var storeRepository = _unitOfWork.StoreRepository;
@@ -295,7 +368,7 @@ namespace ShootingRangeManagementApp.Web.Controllers
 
 
             monthlyGiroViewModel.totalIncome = q.Sum(o => o.Cash + o.CreditCart);
-            monthlyGiroViewModel.totalExpense = dailyBills.Sum(o => o.BillCost);
+            monthlyGiroViewModel.totalExpense = f.Sum(o => o.BillCost);
 
             monthlyGiroViewModel.Total = monthlyGiroViewModel.totalIncome - monthlyGiroViewModel.totalExpense;
             List<StorePartner> storePartnerList = new List<StorePartner>();
@@ -307,7 +380,7 @@ namespace ShootingRangeManagementApp.Web.Controllers
 
             return View(monthlyGiroViewModel);
 
-           
+
         }
         //public IActionResult CalculateMonthlyGiroWDates(int id)
         //{
@@ -322,4 +395,5 @@ namespace ShootingRangeManagementApp.Web.Controllers
            
         //}
     }
+   
 }

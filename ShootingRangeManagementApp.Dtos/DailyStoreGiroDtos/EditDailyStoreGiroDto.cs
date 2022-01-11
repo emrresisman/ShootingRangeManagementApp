@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
+using ShootingRangeManagementApp.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,13 +13,17 @@ namespace ShootingRangeManagementApp.Dtos.DailyStoreGiroDtos
 {
     public class EditDailyStoreGiroDto
     {
-        public int Id { get; set; }
+        [ForeignKey("Store")]
         public int StoreId { get; set; }
-        public float Cash { get; set; }
-        public float CreditCart { get; set; }
-        public string ImageName { get; set; }
-        [NotMapped]
-        [DisplayName("Upload Image")]
-        public IFormFile Image { get; set; }
+        public virtual Store Store { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Cash { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal CreditCart { get; set; }
+       
+       
+       
     }
 }

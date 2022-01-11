@@ -1,0 +1,107 @@
+﻿
+@model Bills
+
+@{ ViewData["Title"] = "Edit";
+}
+
+
+@{
+    var localVar = ViewData["Id"];
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+
+            <div class="col-sm-6">
+                <h1 class="m-0">Edit Page</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Starter Page</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Edit Daily Store Giro</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+
+    <div class="card-body">
+        <form asp-action="EditDailyBill">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="StoreId" type="hidden" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Explanation" class="control-label"></label>
+                <input asp-for="Explanation" class="form-control" />
+                <span asp-validation-for="Explanation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BillCost" class="control-label"></label>
+                <input asp-for="BillCost" class="form-control" />
+                <span asp-validation-for="BillCost" class="text-danger"></span>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" value="Edit" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+    </div>
+    <!-- /.card-body -->
+
+
+
+</div>
+
+
+
+
+
+
+
+
+@*<h1>Edit</h1>
+
+    <h4> Daily Store Giro </h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditDailyStoreGiro" enctype="multipart/form-data">
+                >
+                <input asp-for="StoreId" class="form-control" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Cash" class="control-label"></label>
+                    <input asp-for="Cash" class="form-control" />
+                    <span asp-validation-for="Cash" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreditCart" class="control-label"></label>
+                    <input asp-for="CreditCart" class="form-control" />
+                    <span asp-validation-for="CreditCart" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="EditDailyStoreGiro" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>*@
+
+
+

@@ -1,129 +1,124 @@
 ﻿@model List<StorePartner>
-@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{ Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
 
-<div class="row">
-    <!-- Left col -->
-    <div class="card-body">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th style="width: 10px">#</th>
-                    
-                    <th>Name</th>
-                    <th>Payment Rate</th>
-                    <th>Total Amount</th>
-                    <th class="text-center">Actions</th>
-                    
-                </tr>
-            </thead>
-            @foreach (var item in Model)
-            {
+<!-- Left col -->
+
+@*<table class="mt-4 table table-hover table-bordered table-sm">
+    <thead class="text-center">
+        <tr>
+            <th style="width: 10px">#</th>
+
+            <th>Name</th>
+            <th>Payment Rate</th>
+            <th>Total Amount</th>
+            <th>Delete Store Partner Action</th>
+            <th>Edit Store Partner Action</th>
+
+
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
 <tbody>
     <tr>
-        <td>1.</td>
-        
+        <td>i++</td>
+
         <td>
             @item.Name
         </td>
         <td>@item.PaymentRate</td>
         <td>@item.TotalAmount</td>
+
         <td>
             <div class="text-center">
-                
-                <a asp-action="DeleteStorePartner" asp-controller="Store" asp-route-id="@item.Id" class="btn btn-outline-danger">
+
+                <a asp-action="DeleteStorePartner" asp-controller="Store" asp-route-id="@item.Id" onclick="return confirm('Are you sure to delete store partner :@item.Name')" class="btn btn-outline-danger">
 
 
-                    <img width="25" height="25" src="~/images/delete.png" />  Delete Store Partner
-                </a>
-                <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-outline-info">
-
-                    <img width="25" height="25" src="~/images/edit.png" />   Edit Store Partner
+                    <i class="fas fa-ban mr-2"></i>     Delete Store Partner
                 </a>
             </div>
         </td>
-    </tr>
+        <td>
+            <div class="text-center">
+                <a asp-action="EditStorePartner" asp-controller="Store" asp-route-id="@item.Id" class="btn btn-outline-info">
 
+                    <i class="fas fa-highlighter mr-2"></i>     Edit Store Partner
+                </a>
+            </div>
+        </td>
+
+
+
+    </tr>
 </tbody>
 }
 
-        </table>
-    </div>
-    <!-- right col --><div class="card-body">
-        <ul class="pagination pagination-month justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">«</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Jan</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item active">
-                <a class="page-link" href="#">
-                    <p class="page-month">Feb</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Mar</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Apr</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">May</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Jun</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Jul</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Aug</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Sep</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Oct</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Nov</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Dec</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">»</a></li>
-        </ul>
-    </div>
-</div>
+</table>*@
+
+
+
+
+
+
+
+<br />
+<br />
+
+<table class="mt-4 table table-hover table-bordered table-sm">
+    <thead>
+        <tr class="text-center">
+            <td>#</td>
+            <td>Name</td>
+            <td>Payment Rate</td>
+            <td>Total Amount</td>
+            <td>Delete Store Partner Action</td>
+
+            <td>Edit Store Partner Action</td>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr class="text-center">
+        
+        <td>-</td>
+    <td>@item.Name</td>
+    <td>@item.PaymentRate</td>
+    <td>@item.TotalAmount</td>
+    <td>
+        <a asp-action="DeleteStorePartner" asp-controller="Store" asp-route-id="@item.Id" onclick="return confirm('Are you sure to delete store partner :@item.Name')" class="btn btn-outline-danger">
+
+
+            <i class="fas fa-ban mr-2"></i>     Delete Store Partner
+        </a>
+    </td>
+
+
+    <td>
+        <a asp-action="EditStorePartner" asp-controller="Store" asp-route-id="@item.Id" class="btn btn-outline-info">
+
+            <i class="fas fa-highlighter mr-2"></i>     Edit Store Partner
+        </a>
+    </td>
+
+
+
+
+
+
+
+
+
+    
+</tr>}
+    </tbody>
+</table>
+
+
+
+
+

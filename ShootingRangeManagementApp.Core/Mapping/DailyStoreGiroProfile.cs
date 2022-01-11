@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ShootingRangeManagementApp.Dtos;
+using ShootingRangeManagementApp.Dtos.DailyStoreGiroDtos;
 using ShootingRangeManagementApp.Dtos.StoreDtos;
 using ShootingRangeManagementApp.Dtos.StorePartnerDtos;
 using ShootingRangeManagementApp.Models.Entities;
@@ -15,8 +16,8 @@ namespace ShootingRangeManagementApp.Core.Mapping
     {
         public DailyStoreGiroProfile()
         {
-            CreateMap<DailyStoreGiro, EditDailyStoreGiroDto>();
-            CreateMap<EditDailyStoreGiroDto, DailyStoreGiro>();
+            //CreateMap<DailyStoreGiro, EditDailyStoreGiroDto>();
+            //CreateMap<EditDailyStoreGiroDto, DailyStoreGiro>();
 
             CreateMap<Store, EditStoreDto>();
             CreateMap<EditStoreDto, Store>();
@@ -24,7 +25,14 @@ namespace ShootingRangeManagementApp.Core.Mapping
             CreateMap<StorePartner, CreateStorePartnerDto>();
             CreateMap<CreateStorePartnerDto, StorePartner>();
 
-           
+            CreateMap<StorePartner, EditStorePartnerDto>();
+            CreateMap<EditStorePartnerDto, StorePartner>();
+
+            CreateMap<DailyStoreGiro, EditDailyStoreGiroDto>();
+            CreateMap<EditDailyStoreGiroDto, DailyStoreGiro>();
+            
+            CreateMap<Bills, EditDailyBillDto>();
+            CreateMap<EditDailyBillDto, Bills>();
         }
     }
 }

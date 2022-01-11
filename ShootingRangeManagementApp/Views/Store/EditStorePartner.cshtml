@@ -1,0 +1,71 @@
+﻿@model StorePartner
+@*@{ ViewData["Title"] = "Create";
+    }*@
+<!-- Content Header (Page header) -->
+@{
+    var localVar = ViewData["Id"];
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+
+            <div class="col-sm-6">
+                <h1 class="m-0">Edit Page</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Starter Page</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Edit Store Partner</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+
+    <div class="card-body">
+        <form method="post" asp-controller="Store" asp-action="EditStorePartner">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="StoreId" type="hidden" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentRate" class="control-label"></label>
+                <input asp-for="PaymentRate" class="form-control" />
+                <span asp-validation-for="PaymentRate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TotalAmount" class="control-label"></label>
+                <input asp-for="TotalAmount" class="form-control" />
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+            <div class="card-footer">
+                <button type="submit" value="Edit" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+    </div>
+    <!-- /.card-body -->
+
+
+
+</div>
+
+
+
+
+
+
+

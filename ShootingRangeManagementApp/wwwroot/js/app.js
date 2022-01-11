@@ -37,12 +37,12 @@
                 { "data": "image", "name": "Image", "autoWidth": true },
 
                 {
-                    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Store/EditDailyStoreGiro/' + full[0] + '">Edit</a>'; }
+                    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Store/EditDailyStoreGiro/' + full.id + '">Edit</a>'; }
                 },
                 {
                     data: null,
                     render: function (data, type, row) {
-                        return "<a href='/Store/DeleteDailyStoreGiro' class='btn btn-danger' onclick=DeleteData('" + $(this).data('id') + "'); >Delete</a>";
+                        return "<a href='/Store/DeleteDailyStoreGiro' class='btn btn-danger' onclick=DeleteData('" + data.id + "'); >Delete</a>";
                     }
                 },
             ]
@@ -73,12 +73,12 @@ $(function () {
                 { "data": "billCost", "name": "BillCost", "autoWidth": true },
                
                 {
-                    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Giro/Edit/' + full.Id + '">Edit</a>'; }
+                    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Store/EditDailyBill/' + full.id + '">Edit</a>'; }
                 },
                 {
                     data: null,
                     render: function (data, type, row) {
-                        return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.Id + "'); >Delete</a>";
+                        return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + data.id + "'); >Delete</a>";
                     }
                 },
             ]

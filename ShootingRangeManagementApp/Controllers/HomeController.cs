@@ -89,21 +89,26 @@ namespace ShootingRangeManagementApp.Controllers
         public IActionResult Edit(int id)
         {
             var storeRepository = _unitOfWork.StoreRepository;
-            Store store = storeRepository.GetStore(id);
-            
+            var store = storeRepository.GetStore(id);
+           
             return View(store);
         }
         [HttpPost]
         public IActionResult Edit(EditStoreDto storeDto)
         {
-            var storeRepository = _unitOfWork.StoreRepository;
-            var store = storeRepository.GetStore(storeDto.StoreId);
+            if (ModelState.IsValid)
+            {
+                var storeRepository = _unitOfWork.StoreRepository;
+                var store = storeRepository.GetStore(storeDto.StoreId);
+                _mapper.Map(storeDto, store);
+            }
+          
             //EditStoreDto editedStoreDto = new EditStoreDto();
 
-            _mapper.Map(storeDto, store);
+            //_mapper.Map(storeDto, store);
             //storeRepository.EditStore(store);
             _unitOfWork.Complete();
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
